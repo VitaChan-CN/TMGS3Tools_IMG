@@ -3,7 +3,7 @@
 
 PIM2/PM2 图片 解包 打包
 
-PIM2/PM2 Image Unpack Repack
+PIM2/PM2 Format Image Unpack Repack
 
 
 ```shell
