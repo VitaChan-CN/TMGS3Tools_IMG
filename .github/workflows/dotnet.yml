@@ -1,0 +1,33 @@
+name: .NET Publish
+
+on:
+   push: {tags:  ['v*'] }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Publish
+      run: cd TMGS3Tools_IMG && dotnet publish -p:PublishProfile=FolderProfile
+    - name: Publish1
+      run: cd TMGS3Tools_IMG && dotnet publish -p:PublishProfile=FolderProfile1
+    - name: Publish2
+      run: cd TMGS3Tools_IMG && dotnet publish -p:PublishProfile=FolderProfile2
+    - name: 7zip release
+      run : 7z a -t7z -mx=9 TMGS3Tools_IMG_linux-x64_release.7z ./TMGS3Tools_IMG/publish/linux-x64
+    - name: 7zip release
+      run : 7z a -t7z -mx=9 TMGS3Tools_IMG_osx-x64_release.7z ./TMGS3Tools_IMG/publish/osx-x64
+    - name: 7zip release
+      run : 7z a -t7z -mx=9 TMGS3Tools_IMG_win-x64_release.7z ./TMGS3Tools_IMG/publish/win-x64
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "TMGS3Tools_IMG_linux-x64_release.7z,TMGS3Tools_IMG_osx-x64_release.7z,TMGS3Tools_IMG_win-x64_release.7z"
+        bodyFile: ""
+        token: ${{ secrets.GITHUB_TOKEN }}
+      
