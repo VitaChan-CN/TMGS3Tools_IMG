@@ -7,11 +7,11 @@ PIM2/PM2 Image Unpack Repack
 
 
 ```shell
-字库文件PIM2文件
+字库的PIM2图片文件用这个 
 TMGS3Tools_IMG.exe Export inputfilename outputfilename
 TMGS3Tools_IMG.exe Import inputfilename outputfilename
 
-字库以外的PIM2文件用
+字库以外的PIM2图片文件用这个 有多个Color Panel的也是用这个，导入的时候需要源文件
 TMGS3Tools_IMG.exe Export2 inputfilename outputfilename
 TMGS3Tools_IMG.exe Import2 path_input_fileOrfolder path_output_filename path_org_filename path_pngquant
 path_pngquant 为外部调用 请指定路径
